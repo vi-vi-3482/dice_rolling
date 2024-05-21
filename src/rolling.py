@@ -2,14 +2,14 @@ import random
 import inputs
 
 
-def roll(d):
+def single_roll(d: int) -> int:
     rolled = random.randrange(d)
     return rolled
 
 
 def main():
     d = inputs.single_dice()
-    rolled = roll(d)
+    rolled = single_roll(d)
     print(f"You rolled a d{d} and got {rolled}")
 
 
