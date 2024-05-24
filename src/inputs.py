@@ -8,26 +8,31 @@ def single_dice():
         try:
             d = int(d)
             return d
-        except:
+        except ValueError:
             print("Not an integer.")
 
 
 class CLI:
+
     def __init__(self):
         self.string_in = None
 
     def input_prompt(self):
         self.string_in = input("Enter dice to roll: \n")
         self.string_in.strip()
+        self.string_in.lower()
 
     class BasicRoll:
+        """
+        reads dice in the form of 3d6+2
+        """
         def __init__(self, dice_input):
             self.operator = None
             self.sides = None
             self.count = None
             self.mod = None
             self.pattern = re.compile(r'(\d*)d(\d+)([+\-*/])?(\d+)?')
-            self.dice_input = None
+            self.dice_input = dice_input
 
         def read_input(self):
 
@@ -38,8 +43,6 @@ class CLI:
 
             if match.group(1):
                 self.count = int(match.group(1))
-            else:
-                1
 
             self.sides = int(match.group(2))
 
