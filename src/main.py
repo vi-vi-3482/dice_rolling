@@ -16,7 +16,8 @@ def main():
         dice.rolls()
         dice.display_verbose()
 
-        print("Success! \nEnter 'end' to exit")
+        print("\nSuccess! \nEnter 'end' to exit \n")
+    print("exiting")
 
 
 if __name__ == "__main__":
