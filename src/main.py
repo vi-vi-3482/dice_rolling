@@ -14,7 +14,7 @@ def main():
 
         dice = Dice(prompt_analysis.count, prompt_analysis.sides, prompt_analysis.operator, prompt_analysis.mod)
         dice.rolls()
-        dice.display_rolls()
+        dice.display_verbose()
 
         print("Success! \nEnter 'end' to exit")
 

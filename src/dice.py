@@ -30,8 +30,9 @@ class Dice:
         self.dice_list = []
         self.count = count
         self.sides = sides
-        self.operator = operator
+        self.operator = operator  # will be None if no operator is entered as part of input
         self.mod = mod
+        self.sum = None
 
     def rolls(self):
         self.dice_list = [Die(self.sides) for _ in range(self.count)]
@@ -41,7 +42,27 @@ class Dice:
             if self.operator:
                 die.modify_roll(self.operator, self.mod)
 
+        self.sum = sum(die.modified_current for die in self.dice_list)
+
     def display_rolls(self):
         print("rolled:")
         for die in self.dice_list:
             print(die.modified_current)
+            print(f"total: {self.sum}")
+
+    def display_verbose(self):
+        count = 0
+        if self.operator:
+            print(f"Rolled {self.count}d{self.sides} with a modifier of {self.operator}{self.mod}")
+            for die in self.dice_list:
+                print(f"Die {count}: {die.current} modified to {die.modified_current}")
+                count += 1
+            print(f"The total is: {self.sum}")
+
+        else:
+            print(f"Rolled {self.count}d{self.sides}")
+            for die in self.dice_list:
+                print(f"Die {count}: {die.current}")
+                count += 1
+            print(f"The total is: {self.sum}")
+
