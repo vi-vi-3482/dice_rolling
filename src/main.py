@@ -6,11 +6,22 @@ def main():
     while True:
         cli = CLI()
         cli.input_prompt()
+
         if cli.string_in == "end":
             break
 
-        prompt_analysis = CLI.BasicRoll(cli.string_in)
-        prompt_analysis.read_input()
+        elif cli.string_in == "reroll":
+            try:
+                dice.rolls()
+                dice.display_verbose()
+                continue
+            except UnboundLocalError:
+                print("No prior dice rolled, enter one to continue")
+                continue
+
+        else:
+            prompt_analysis = CLI.BasicRoll(cli.string_in)
+            prompt_analysis.read_input()
 
         dice = Dice(prompt_analysis.count, prompt_analysis.sides, prompt_analysis.operator, prompt_analysis.mod)
         dice.rolls()
